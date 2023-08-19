@@ -1,6 +1,5 @@
 "use client";
 
-import * as z from "zod";
 import axios from "axios";
 import { MessageSquare } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -18,14 +17,10 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
 import { Loader } from "@/components/loader";
 import { UserAvatar } from "@/components/user-avatar";
+import { formSchema } from "./constants";
+import * as z from "zod";
 // import { Empty } from "@/components/ui/empty";
 // import { useProModal } from "@/hooks/use-pro-modal";
-
-export const formSchema = z.object({
-  prompt: z.string().min(1, {
-    message: "Prompt is required.",
-  }),
-});
 
 const ConversationPage = () => {
   const router = useRouter();
