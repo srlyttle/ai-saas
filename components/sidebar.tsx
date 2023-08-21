@@ -35,36 +35,6 @@ const routes = [
     colour: "text-gray-400",
     icon: MessageSquare,
   },
-  {
-    label: "Image generation",
-    href: "/image",
-    colour: "text-pink-700",
-    icon: ImageIcon,
-  },
-  {
-    label: "Video generation",
-    href: "/video",
-    colour: "text-orange-700",
-    icon: VideoIcon,
-  },
-  {
-    label: "Music generation",
-    href: "/music",
-    colour: "text-emerald-500",
-    icon: Music,
-  },
-  {
-    label: "Code generation",
-    href: "/settings",
-    colour: "text-green-700",
-    icon: Code,
-  },
-  {
-    label: "Settings",
-    href: "/imagegeneration",
-
-    icon: Settings,
-  },
 ];
 export const Sidebar = () => {
   const pathname = usePathname();

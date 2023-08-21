@@ -17,20 +17,24 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
 import { Loader } from "@/components/loader";
 import { UserAvatar } from "@/components/user-avatar";
-import { formSchema } from "./constants";
+import { formSchema } from "../constants";
 import * as z from "zod";
+import { promptItems } from "@/constants";
 // import { Empty } from "@/components/ui/empty";
 // import { useProModal } from "@/hooks/use-pro-modal";
 
-const ConversationPage = () => {
+const ConversationPage = ({ params }: { params: { promptId: number } }) => {
   const router = useRouter();
   //   const proModal = useProModal();
-  const [messages, setMessages] = useState<OpenAI.Chat.CreateChatCompletionRequestMessage[]>([]);
+  const prompt = promptItems.find((item) => item.id == params.promptId);
+  const [messages, setMessages] = useState<
+    OpenAI.Chat.CreateChatCompletionRequestMessage[]
+  >([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      prompt: "",
+      prompt: prompt?.prompt || "",
     },
   });
 
