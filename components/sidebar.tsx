@@ -54,7 +54,7 @@ export const Sidebar = ({
             <Image fill alt="logo" src="/logo.png" />
           </div>
           <h1 className={cn("text-lg font-bold", montserrat.className)}>
-            Albertine
+            Albertein
           </h1>
         </Link>
         <div className="space-y-1">

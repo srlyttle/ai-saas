@@ -9,7 +9,7 @@ import { CrispProvider } from "@/components/crisp-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Albert one",
+  title: "albertein",
   description: "An AI powered chatbot with your knowledge base",
 };
 
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <CrispProvider />
+        {/* <CrispProvider /> */}
         <body className={inter.className}>
           <ModalProvider />
           <ToasterProvider />

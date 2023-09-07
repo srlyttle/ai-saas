@@ -14,7 +14,7 @@ export const tools = [
 
 export const promptCategories = [
   "Marketing",
-  "Business",
+  // "Business",
   // "Content Creation",
   // "Writing",
   // "Web Development",
