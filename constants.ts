@@ -39,6 +39,7 @@ export const promptItems = [
     prompt:
       "Can you provide me with some ideas for blog posts about [topic of your choice]?",
     category: "Marketing",
+    substitution: ["topic of your choice"],
   },
   {
     id: 2,
@@ -142,6 +143,7 @@ export const promptItems = [
     id: 18,
     prompt:
       "Analyze the current state of <industry> and its trends, challenges, and opportunities, including relevant data and statistics. Provide a list of key players and a short and long-term industry forecast, and explain any potential impact of current events or future developments.",
+    category: "Business",
   },
   {
     id: 19,

@@ -20,12 +20,13 @@ import { UserAvatar } from "@/components/user-avatar";
 import { formSchema } from "../constants";
 import * as z from "zod";
 import { promptItems } from "@/constants";
+import { useProModal } from "@/hooks/useProModal";
 // import { Empty } from "@/components/ui/empty";
 // import { useProModal } from "@/hooks/use-pro-modal";
 
 const ConversationPage = ({ params }: { params: { promptId: number } }) => {
   const router = useRouter();
-  //   const proModal = useProModal();
+  const { toggleState, isOpen } = useProModal();
   const prompt = promptItems.find((item) => item.id == params.promptId);
   const [messages, setMessages] = useState<
     OpenAI.Chat.CreateChatCompletionRequestMessage[]
@@ -53,10 +54,13 @@ const ConversationPage = ({ params }: { params: { promptId: number } }) => {
       });
       setMessages((current) => [...current, userMessage, response.data]);
 
-      form.reset();
+      form.reset({ prompt: "" });
     } catch (error: any) {
+      console.log("here");
       if (error?.response?.status === 403) {
-        // proModal.onOpen();
+        console.log("here3");
+
+        toggleState();
       } else {
         toast.error("Something went wrong.");
       }

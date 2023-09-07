@@ -1,3 +1,8 @@
+import {
+  checkIfFreeApiLimitIsExceeded,
+  increaseApiLimit,
+} from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/checkSubscription";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
@@ -29,9 +34,12 @@ export async function POST(req: Request) {
       return new NextResponse("Messages are required", { status: 400 });
     }
 
-    // const freeTrial = await checkApiLimit();
-    // const isPro = await checkSubscription();
+    const isFreeLimitExceeded = await checkIfFreeApiLimitIsExceeded();
+    const isPro = await checkSubscription();
 
+    if (isFreeLimitExceeded && !isPro) {
+      return new NextResponse("Free trial expired", { status: 403 });
+    }
     // if (!freeTrial && !isPro) {
     //   return new NextResponse(
     //     "Free trial has expired. Please upgrade to pro.",
@@ -43,10 +51,9 @@ export async function POST(req: Request) {
       model: "gpt-3.5-turbo",
       messages,
     });
-
-    // if (!isPro) {
-    //   await incrementApiLimit();
-    // }
+    if (!isPro) {
+      await increaseApiLimit();
+    }
 
     return NextResponse.json(response.choices[0].message);
   } catch (error) {

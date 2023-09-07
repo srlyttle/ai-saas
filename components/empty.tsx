@@ -2,7 +2,7 @@ import Image from "next/image";
 
 interface Props {
   label: string;
-  showImage: boolean;
+  showImage?: boolean;
 }
 
 export const Empty = ({ label, showImage = false }: Props) => {

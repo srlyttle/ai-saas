@@ -5,7 +5,13 @@ import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Sidebar } from "./sidebar";
 
-export const MobileSidebar = () => {
+export const MobileSidebar = ({
+  apiLimitCount,
+  isPro,
+}: {
+  apiLimitCount: number;
+  isPro: boolean;
+}) => {
   // state variable to fix hydration error
   const [isMounted, setIsMounted] = React.useState(false);
 
@@ -19,13 +25,13 @@ export const MobileSidebar = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        {/* <Button variant="ghost" size="icon" className="md:hidden">
+        <Button variant="ghost" size="icon" className="md:hidden">
           <Menu />
-        </Button> */}
-        <Menu />
+        </Button>
+        {/* <Menu /> */}
       </SheetTrigger>
       <SheetContent side="left" className="p-0">
-        <Sidebar />
+        <Sidebar isPro={isPro} apiLimitCount={apiLimitCount} />
       </SheetContent>
     </Sheet>
   );

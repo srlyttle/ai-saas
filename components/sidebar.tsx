@@ -16,6 +16,7 @@ import {
   UserPlus,
   VideoIcon,
 } from "lucide-react";
+import { FreeCounter } from "./free-counter";
 
 const montserrat = Montserrat({
   weight: "600",
@@ -36,7 +37,13 @@ const routes = [
     icon: MessageSquare,
   },
 ];
-export const Sidebar = () => {
+export const Sidebar = ({
+  apiLimitCount,
+  isPro = false,
+}: {
+  apiLimitCount: number;
+  isPro: boolean;
+}) => {
   const pathname = usePathname();
   console.log("current path", pathname);
   return (
@@ -47,7 +54,7 @@ export const Sidebar = () => {
             <Image fill alt="logo" src="/logo.png" />
           </div>
           <h1 className={cn("text-lg font-bold", montserrat.className)}>
-            Ethermi.ai
+            Albertine
           </h1>
         </Link>
         <div className="space-y-1">
@@ -68,6 +75,7 @@ export const Sidebar = () => {
           ))}
         </div>
       </div>
+      <FreeCounter apiLimitCount={apiLimitCount || 0} isPro={isPro} />
     </div>
   );
 };
